@@ -1,0 +1,17 @@
+name: ml-notebooks
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - scikit-learn=1.5.2
+  - pandas
+  - numpy
+  - matplotlib
+  - seaborn
+  - scipy
+  - jupyter
+  - ipykernel
+  - pip:
+    - openml

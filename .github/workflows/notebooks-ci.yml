@@ -1,0 +1,30 @@
+name: notebooks-ci
+
+on: [push, pull_request]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install deps
+        run: pip install -r requirements.txt
+      - name: Validate notebook JSON
+        run: python -c "import json,glob; [json.load(open(f,encoding='utf-8')) for f in glob.glob('notebooks/**/*.ipynb',recursive=True)]; print('JSON OK')"
+      - name: Check no pip-install cells remain
+        run: |
+          python -c "
+          import json, glob
+          bad=[]
+          for f in glob.glob('notebooks/**/*.ipynb',recursive=True):
+              nb=json.load(open(f,encoding='utf-8'))
+              for i,c in enumerate(nb['cells']):
+                  s=''.join(c.get('source',[]))
+                  if c['cell_type']=='code' and ('!pip install' in s or s.strip().startswith('pip install')):
+                      bad.append((f,i))
+          print('pip-install cells:', bad if bad else 'NONE - OK')
+          raise SystemExit(1 if bad else 0)
+          "
