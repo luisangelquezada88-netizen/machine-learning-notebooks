@@ -1,10 +1,54 @@
 # Machine Learning – Cuadernos reproducibles
 
-El presente repositorio contiene varios cuadernos de Python `.ipynb` con diferentes algoritmos de aprendizaje de máquina (Machine Learning). Son cuadernos con código limpio, listo para reproducir y reutilizar, provenientes de cursos y materiales de estudio universitario.
+<p align="center">
+  <a href="https://github.com/luis-quezada/ml-notebooks/actions/workflows/notebooks-ci.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/luis-quezada/ml-notebooks/notebooks-ci.yml?branch=main&label=CI%20notebooks&color=green" alt="CI notebooks">
+  </a>
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="Licencia MIT">
+  </a>
+  <a href="https://www.linkedin.com/in/luis-quezada/">
+    <img src="https://img.shields.io/badge/LinkedIn-Luis_Quezada-0077b5?logo=linkedin" alt="LinkedIn">
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/python-3.11%2B-blue?logo=python" alt="Python versión">
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/scikit--learn-1.5-orange?logo=scikit-learn" alt="scikit-learn">
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/jupyter-notebook-orange?logo=jupyter" alt="Jupyter Notebook">
+  </a>
+</p>
 
-El repositorio abarca diferentes técnicas, herramientas y necesidades del aprendizaje de máquina. Contiene algoritmos de regresión, clasificación y agrupamiento (clustering), así como la revisión de hiperparámetros, métricas para la evaluación comparativa de modelos y visualizaciones pertinentes.
+El presente repositorio contiene varios cuadernos de Python `.ipynb` con diferentes algoritmos de aprendizaje de máquina (**Machine Learning**). Son cuadernos con código limpio, listo para reproducir y reutilizar, provenientes de cursos y materiales de estudio universitario.
 
-Pueden usarse para diferentes campos del conocimiento. Los datos analizados en los cuadernos abarcan medio ambiente, medicina, finanzas, información geográfica y demás disciplinas, ententiendo a los datos como pieza transversal a cualquier sector productivo y académico.
+El repositorio abarca diferentes técnicas, herramientas y necesidades del aprendizaje de máquina. Contiene algoritmos de **regresión, clasificación y agrupamiento (clustering)**, así como la revisión de hiperparámetros, métricas para la evaluación comparativa de modelos y visualizaciones pertinentes.
+
+Pueden usarse para diferentes campos del conocimiento. Los datos analizados en los cuadernos abarcan **medio ambiente, medicina, finanzas, información geográfica** y demás disciplinas, entendiendo a los datos como pieza transversal a cualquier sector productivo y académico.
+
+---
+
+## Inventario de cuadernos y modelos
+
+| Modelo | Cuaderno | Tema | Indicadores | Resultado |
+|--------|----------|------|-------------|-----------|
+| Regresión lineal simple | `01-regresion/simple-linear-regression-co2.ipynb` | Ambiental (CO₂) | MAE, MSE, R², CV 5-fold | Predice emisiones CO₂ a partir del tamaño del motor |
+| Regresión lineal múltiple | `01-regresion/multiple-linear-regression-co2.ipynb` | Ambiental (CO₂) | MAE, MSE, R², CV 5-fold | Predice CO₂ usando varias variables de consumo |
+| Árbol de regresión | `01-regresion/regression-tree-taxi-tip.ipynb` | Finanzas / Transporte | RMSE, R², importancia de features | Predice propina de taxi (NYC TLC) |
+| Regresión logística | `02-clasificacion/logistic-regression-churn.ipynb` | Finanzas / Telco | Acuracay, matriz de confusión, ROC-AUC | Predice churn de clientes |
+| Árbol de decisión | `02-clasificacion/decision-trees-drug.ipynb` | Salud | Acuracay, matriz de confusión | Recomienda fármaco según perfil del paciente |
+| K-Vecinos Cercanos (KNN) | `02-clasificacion/k-nearest-neighbors-custcat.ipynb` | Finanzas / Telco | Acuracay, k óptimo | Clasifica segmento de cliente |
+| SVM | `02-clasificacion/svm-cancer.ipynb` | Salud (cáncer) | Acuracay, matriz de confusión | Clasifica células benignas/malignas |
+| Árbol de decisión (fraude) | `02-clasificacion/decision-tree-credit-card-fraud.ipynb` | Finanzas (fraude) | Acuracay, matriz de confusión | Detecta transacciones fraudulentas |
+| Softmax OvR / OvO | `02-clasificacion/multiclass-softmax-ovr-ovo.ipynb` | Multiclase | Acuracay por estrategia | Clasificación multiclase |
+| K-Means | `03-clustering/k-means-customer-segmentation.ipynb` | Marketing | Inercia, silueta, n.º de clusters | Segmentación de clientes |
+| Regresión + Clasificación (OpenML) | `04-proyecto-unad/fase2-regresion-clasificacion-cloud-phoneme.ipynb` | Ciencia de datos | R², acuracay | Proyecto supervisado UNAD (Cloud / Phoneme) |
+| Clustering no supervisado (OpenML) | `04-proyecto-unad/fase3-clustering.ipynb` | Ciencia de datos | Inercia, silueta | Proyecto no supervisado UNAD |
+
+> Cuaderno histórico duplicado (no usar): `docs/deprecated/regression-trees-DUPLICADO-logistic-churn.ipynb`
+
+---
 
 ## Estructura
 
@@ -26,11 +70,11 @@ Pueden usarse para diferentes campos del conocimiento. Los datos analizados en l
 │   └── 04-proyecto-unad/
 │       ├── fase2-regresion-clasificacion-cloud-phoneme.ipynb
 │       └── fase3-clustering.ipynb
-├── src/utils.py              # set_seed, download_if_missing, load_csv_cached, plot_confusion_matrix
+├── src/utils.py              # set_seed, download_if_missing, load_csv_cached, plot_confusion_matrix + helpers de visualización
 ├── data/README.md            # fuentes y regla de cache (los CSV no se versionan)
 ├── docs/
 │   ├── MEJORAS-POR-NOTEBOOK.md
-│   └── deprecated/           # duplicado historico (no usar)
+│   └── deprecated/           # duplicado histórico (no usar)
 ├── requirements.txt
 ├── environment.yml
 └── .github/workflows/notebooks-ci.yml
