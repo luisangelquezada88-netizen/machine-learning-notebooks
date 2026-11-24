@@ -20,11 +20,38 @@
 
 > **Del dato crudo al modelo que decide.** Una colección de cuadernos de Machine Learning que no se queda en la teoría: cada notebook parte de un problema real, lo limpia, lo explora, lo modela y lo evalúa con métricas que importan.
 
+## Inicio rápido
+
+Trabaja siempre en un entorno aislado: así lo que ejecutas en tu máquina es exactamente lo que se ejecuta en cualquier otra.
+
+```bash
+# Opción A — venv (ligero, recomendado en Windows)
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+
+# Opción B — conda
+conda env create -f environment.yml
+conda activate ml-notebooks
+
+# Ejecutar
+jupyter lab
+# Abrir cualquier notebook en notebooks/*/ y: Kernel > Restart & Run All
+```
+
+`.venv/` y `environment/` están ignorados por `.gitignore`: no se suben a GitHub, solo se versionan `requirements.txt` y `environment.yml`.
+
+Validar que todos los cuadernos son JSON válido:
+
+```bash
+python -c "import json,glob; [json.load(open(f,encoding='utf-8')) for f in glob.glob('notebooks/**/*.ipynb',recursive=True)]; print('JSON OK')"
+```
+
+---
+
 Este repositorio nace de una convicción sencilla: **un modelo solo demuestra su valor cuando otro puede reproducirlo**. Por eso cada cuaderno aquí es una historia completa y ejecutable de principio a fin — desde la descarga del dataset hasta la interpretación de los resultados —, escrito con código limpio, sin atajos y sin dependencias ocultas.
 
 No encontrarás celdas mágicas ni resultados inventados. Encontrarás **regresión, clasificación y clustering** aplicados a datos reales de medio ambiente, salud, finanzas, transporte y marketing, con la misma disciplina con la que se trabaja en producción: validación cruzada, métricas comparativas, matrices de confusión, importancia de variables y visualizaciones que explican *por qué* el modelo funciona (o no).
-
----
 
 ## ¿Por qué este repositorio?
 
@@ -53,8 +80,6 @@ No encontrarás celdas mágicas ni resultados inventados. Encontrarás **regresi
 | K-Means | `03-clustering/k-means-customer-segmentation.ipynb` | Marketing | Inercia, silueta, n.º de clusters | Segmenta clientes para decisiones comerciales |
 | Clustering con dataset Cloud | `03-clustering/cloud-clustering.ipynb` | Ciencia de datos | Inercia, silueta | Descubre estructuras ocultas en datos de siembra de nubes |
 
-> ⚠️ Cuaderno histórico duplicado (no usar): `docs/deprecated/regression-trees-DUPLICADO-logistic-churn.ipynb`
-
 ---
 
 ## Estructura
@@ -79,42 +104,8 @@ No encontrarás celdas mágicas ni resultados inventados. Encontrarás **regresi
 │       └── cloud-clustering.ipynb
 ├── src/utils.py              # set_seed, download_if_missing, load_csv_cached, plot_confusion_matrix + helpers de visualización
 ├── data/README.md            # fuentes y regla de caché (los CSV no se versionan)
-├── docs/deprecated/          # duplicado histórico (no usar)
 ├── requirements.txt
 └── environment.yml
-```
-
-## Environment (aislado, recomendado)
-
-Trabaja siempre en un entorno aislado: así lo que ejecutas en tu máquina es exactamente lo que se ejecuta en cualquier otra.
-
-```bash
-# Opción A — venv (ligero, recomendado en Windows)
-python -m venv .venv
-.venv\Scripts\activate
-pip install -r requirements.txt
-
-# Opción B — conda
-conda env create -f environment.yml
-conda activate ml-notebooks
-```
-
-`.venv/` y `environment/` están ignorados por `.gitignore`: no se suben a GitHub, solo se versionan `requirements.txt` y `environment.yml`.
-
-## Reproducir en 3 pasos
-
-```bash
-pip install -r requirements.txt
-# o: conda env create -f environment.yml && conda activate ml-notebooks
-
-jupyter lab
-# Abrir cualquier notebook en notebooks/*/ y: Kernel > Restart & Run All
-```
-
-Validar que todos los cuadernos son JSON válido:
-
-```bash
-python -c "import json,glob; [json.load(open(f,encoding='utf-8')) for f in glob.glob('notebooks/**/*.ipynb',recursive=True)]; print('JSON OK')"
 ```
 
 ## Créditos
